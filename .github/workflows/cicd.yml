@@ -6,7 +6,7 @@ on:
 #   pull_request:
 #     types: [opened, synchronize, reopened]   
 jobs:
-  build:
+  build_and_push_docker_image:
     runs-on: ubuntu-latest
     # strategy:
     #   matrix:
@@ -27,6 +27,7 @@ jobs:
         echo VITE_AUTH0_AUDIENCE=${{secrets.VITE_AUTH0_AUDIENCE}} >> .env
         cat .env
         pwd
+        ls
     # - name: Build and push plugin
     #   uses: docker/build-push-action@v4
     #   with:
@@ -34,7 +35,7 @@ jobs:
     - name: build and push frontend docker image
       working-directory: mern-food-ordering-app-frontend
       run: |
-        docker build . --file Dockerfile -t eshan3312/mern-food-delivery-frontend-action
+        docker build --file Dockerfile -t eshan3312/mern-food-delivery-frontend-action .
         docker push eshan3312/mern-food-delivery-frontend-action:latest
         cd ..
     - name: create backend env file with all the secrets
@@ -52,10 +53,11 @@ jobs:
         echo STRIPE_WEBHOOK_SECRET=${{secrets.STRIPE_WEBHOOK_SECRET}} >> .env
         cat .env
         pwd
+        ls
     - name: build and push backend image to dockerhub
       working-directory: mern-food-ordering-app-backend
       run: |
-        docker build . --file Dockerfile -t eshan3312/mern-food-delivery-backend-action
+        docker build --file Dockerfile -t eshan3312/mern-food-delivery-backend-action .
         docker push eshan3312/mern-food-delivery-backend-action:latest
         cd ..
   # deploy:
