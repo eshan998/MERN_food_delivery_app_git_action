@@ -27,11 +27,12 @@ jobs:
         echo VITE_AUTH0_AUDIENCE=${{secrets.VITE_AUTH0_AUDIENCE}} >> .env
         cat .env
         pwd
-    - name: Build and push plugin
-      uses: docker/build-push-action@v4
-      with:
-        context: .
+    # - name: Build and push plugin
+    #   uses: docker/build-push-action@v4
+    #   with:
+    #     context: .
     - name: build and push frontend docker image
+      working-directory: mern-food-ordering-app-frontend
       run: |
         docker build -t eshan3312/mern-food-delivery-frontend-action .
         docker push eshan3312/mern-food-delivery-frontend-action:latest
