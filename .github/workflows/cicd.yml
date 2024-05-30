@@ -34,7 +34,7 @@ jobs:
     - name: build and push frontend docker image
       working-directory: mern-food-ordering-app-frontend
       run: |
-        docker build -t eshan3312/mern-food-delivery-frontend-action .
+        docker build . --file Dockerfile -t eshan3312/mern-food-delivery-frontend-action
         docker push eshan3312/mern-food-delivery-frontend-action:latest
         cd ..
     - name: create backend env file with all the secrets
@@ -53,8 +53,9 @@ jobs:
         cat .env
         pwd
     - name: build and push backend image to dockerhub
+      working-directory: mern-food-ordering-app-backend
       run: |
-        docker build -t eshan3312/mern-food-delivery-backend-action .
+        docker build . --file Dockerfile -t eshan3312/mern-food-delivery-backend-action
         docker push eshan3312/mern-food-delivery-backend-action:latest
         cd ..
   # deploy:
