@@ -1,6 +1,4 @@
-# # .github/workflows/second_cd.yml
 # name: Deploy to AWS
-
 # on:
 #   workflow_run:
 #     workflows: [Build and Push Docker Images to Dockerhub]
