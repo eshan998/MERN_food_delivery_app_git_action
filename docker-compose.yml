@@ -1,0 +1,42 @@
+version: "3.8"
+services:
+  frontend:
+    # build: ./mern-food-ordering-app-frontend
+    image: eshan3312/mern-food-delivery-frontend-action:latest
+    container_name: frontend
+    depends_on:
+      - backend
+    ports:
+      - "5173:5173"
+    networks:
+      - food
+  backend:
+    # build: ./mern-food-ordering-app-backend
+    image: eshan3312/mern-food-delivery-backend-action:latest
+    container_name: backend
+    # depends_on:
+    #   - mongo
+    ports:
+      - "7000:7000"
+    networks: 
+     - food
+  
+  # mongo:
+  #   image: mongo
+  #   restart: always
+  #   volumes: 
+  #     - mongodb_data:/data/db
+  #   environment: 
+  #     MONGODB_INITDB_ROOT_USERNAME: username
+  #     MONGODB_INITDB_ROOT_PASSWORD: password
+  #   uncomment following lines to access db locally
+  #   ports:
+  #     - 27017:27017
+  #   networks: 
+  #    - food
+
+networks:
+  food:
+
+# volumes: 
+#   mongodb_data:
