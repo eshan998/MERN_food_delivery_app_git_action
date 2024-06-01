@@ -3,14 +3,13 @@ on:
   push:
     branches:
       - main
-#   pull_request:
-#     types: [opened, synchronize, reopened]   
+  pull_request:
+    types:
+      - closed  
 jobs:
   build_and_push_docker_image:
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
-    # strategy:
-    #   matrix:
-    #     python-version: ["3"]
     steps:
     - name: Checkout source
       uses: actions/checkout@v4
@@ -28,10 +27,6 @@ jobs:
         cat .env
         pwd
         ls -a
-    # - name: Build and push plugin
-    #   uses: docker/build-push-action@v4
-    #   with:
-    #     context: .
     - name: build and push frontend docker image
       working-directory: mern-food-ordering-app-frontend
       run: |

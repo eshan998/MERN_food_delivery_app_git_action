@@ -1,0 +1,44 @@
+# # .github/workflows/second_cd.yml
+# name: Second Continuous Deployment
+
+# on:
+#   workflow_run:
+#     workflows: [First Continuous Deployment]
+#     types:
+#       - completed
+
+# jobs:
+#   success:
+#     runs-on: ubuntu-latest
+#     if: ${{ github.event.workflow_run.conclusion == 'success' }}
+#     steps:
+#       - run: echo 'The First workflow completed successfully.'
+#   failure:
+#     runs-on: ubuntu-latest
+#     if: ${{ github.event.workflow_run.conclusion == 'failure' }}
+#     steps:
+#       - run: echo 'The First workflow failed.'
+#   exit:
+#     needs: failure
+#     runs-on: ubuntu-latest
+#     steps:
+#       - run: exit 1
+#   check_changes:
+#       needs: success
+#       runs-on: ubuntu-latest
+#       outputs:
+#         src:
+#       steps:
+#       - uses: actions/checkout@v3
+#       - uses: dorny/paths-filter@v3
+#         id: changes
+#         with:
+#           filters: |
+#             src:
+#               - 'secondpath/**'
+#   do_something:
+#     needs: check_changes
+#     if: needs.check_changes.outputs.src == 'true'
+#     runs-on: ubuntu-latest
+#     steps:
+#         run: echo "do something"
