@@ -28,6 +28,7 @@ jobs:
           #scanning files
           trivy fs .
   build_and_push_docker_image:
+    needs: sonarcloud
     if: >
           github.event_name == 'pull_request' && 
           github.event.action == 'closed' && 
