@@ -87,24 +87,24 @@ jobs:
     steps:
     - name: remove old images
       run: |
-        mkdir mern_application
-        cd mern_application
-        git clone https://github.com/eshan998/MERN_food_delivery_app_git_action.git
+        # mkdir mern_application
+        # cd mern_application
+        # git clone https://github.com/eshan998/MERN_food_delivery_app_git_action.git
         cd ~/MERN_food_delivery_app_git_action
         ls -a
         # docker compose down -v
         docker rmi --force eshan3312/mern-food-delivery-frontend-action:latest || true
         docker rmi --force eshan3312/mern-food-delivery-backend-action:latest || true
-    - name: pull latest images
-      run: |
-        docker image pull eshan3312/mern-food-delivery-frontend-action:latest
-        docker image pull eshan3312/mern-food-delivery-backend-action:latest
-    - name: scan image with trivy
-      run: |
-        trivy image eshan3312/mern-food-delivery-frontend-action:latest
-        trivy image eshan3312/mern-food-delivery-backend-action:latest
-    - name: create new deployment
-      run: |
-        docker-compose up -d --force-recreate
-        docker ps
+    # - name: pull latest images
+    #   run: |
+    #     docker image pull eshan3312/mern-food-delivery-frontend-action:latest
+    #     docker image pull eshan3312/mern-food-delivery-backend-action:latest
+    # - name: scan image with trivy
+    #   run: |
+    #     trivy image eshan3312/mern-food-delivery-frontend-action:latest
+    #     trivy image eshan3312/mern-food-delivery-backend-action:latest
+    # - name: create new deployment
+    #   run: |
+    #     docker-compose up -d --force-recreate
+    #     docker ps
 
