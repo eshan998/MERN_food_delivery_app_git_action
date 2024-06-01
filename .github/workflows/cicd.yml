@@ -89,8 +89,10 @@ jobs:
       run: |
         docker rmi --force eshan3312/mern-food-delivery-frontend-action:latest || true
         docker rmi --force eshan3312/mern-food-delivery-backend-action:latest || true
-    - name: pull latest images
-      run: docker-compose build --pull --no-cache
+    - name: clone git repo and pull latest images
+      run: |
+        git clone https://github.com/eshan998/MERN_food_delivery_app_git_action.git
+        docker-compose build --pull --no-cache
     - name: scan image with trivy
       run: |
         trivy image eshan3312/mern-food-delivery-frontend-action:latest
