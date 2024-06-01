@@ -6,7 +6,7 @@ on:
   pull_request:
     types: [opened, synchronize, reopened, closed]
 jobs:
-  sonarcloud:
+  CodeScan:
     name: SonarCloud
     runs-on: ubuntu-latest
     steps:
@@ -28,7 +28,7 @@ jobs:
           #scanning files
           trivy fs .
   build_and_push_docker_image:
-    needs: sonarcloud
+    needs: CodeScan
     if: >
           github.event_name == 'pull_request' && 
           github.event.action == 'closed' && 
@@ -87,12 +87,14 @@ jobs:
     steps:
     - name: remove old images and create new deployment
       run: |
+        docker compose down -v
         docker rmi --force eshan3312/mern-food-delivery-frontend-action:latest || true
         docker rmi --force eshan3312/mern-food-delivery-backend-action:latest || true
     - name: clone git repo and pull latest images
       run: |
         git clone https://github.com/eshan998/MERN_food_delivery_app_git_action.git
-        docker-compose build --pull --no-cache
+        docker image pull eshan3312/mern-food-delivery-frontend-action:latest
+        docker image pull eshan3312/mern-food-delivery-backend-action:latest
     - name: scan image with trivy
       run: |
         trivy image eshan3312/mern-food-delivery-frontend-action:latest
