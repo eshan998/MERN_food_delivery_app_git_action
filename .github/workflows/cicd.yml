@@ -94,6 +94,9 @@ jobs:
         ls -a
         pwd
         cd MERN_food_delivery_app_git_action
+        ls -a
+        pwd
+        cat docker-compose.yml
         # docker compose down -v
         docker rmi --force eshan3312/mern-food-delivery-frontend-action:latest || true
         docker rmi --force eshan3312/mern-food-delivery-backend-action:latest || true
