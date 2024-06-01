@@ -87,12 +87,13 @@ jobs:
     steps:
     - name: remove old images and create new deployment
       run: |
+        git clone https://github.com/eshan998/MERN_food_delivery_app_git_action.git
+        cd MERN_food_delivery_app_git_action
         docker compose down -v
         docker rmi --force eshan3312/mern-food-delivery-frontend-action:latest || true
         docker rmi --force eshan3312/mern-food-delivery-backend-action:latest || true
     - name: clone git repo and pull latest images
       run: |
-        git clone https://github.com/eshan998/MERN_food_delivery_app_git_action.git
         docker image pull eshan3312/mern-food-delivery-frontend-action:latest
         docker image pull eshan3312/mern-food-delivery-backend-action:latest
     - name: scan image with trivy
