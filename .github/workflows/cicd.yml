@@ -90,7 +90,7 @@ jobs:
         # mkdir mern_application
         # cd mern_application
         # git clone https://github.com/eshan998/MERN_food_delivery_app_git_action.git
-        cd ~/MERN_food_delivery_app_git_action
+        #cd ~/MERN_food_delivery_app_git_action
         ls -a
         pwd
         # docker compose down -v
