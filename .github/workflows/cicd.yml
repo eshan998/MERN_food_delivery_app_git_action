@@ -95,8 +95,6 @@ jobs:
         cd MERN_food_delivery_app_git_action
         ls -al
         pwd
-    - name: create frontend env file with all the secrets
-      run: |
         cd mern-food-ordering-app-frontend
         # rm -rf .env
         touch .env
