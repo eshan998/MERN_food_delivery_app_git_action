@@ -87,15 +87,13 @@ jobs:
     steps:
     - name: remove old images
       run: |
-        # mkdir mern_application
-        # cd mern_application
         # git clone https://github.com/eshan998/MERN_food_delivery_app_git_action.git
-        #cd ~/MERN_food_delivery_app_git_action
         ls -a
         pwd
         cd ~/food_delivery_app
         echo "now at my folder"
-        cd MERN_food_delivery_app_git_action.git
+        ls -al
+        cd MERN_food_delivery_app_git_action
         ls -a
         pwd
         cat docker-compose.yml
