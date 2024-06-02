@@ -106,8 +106,6 @@ jobs:
         cat .env
         ls -al
         cd ..
-    - name: create backend env file with all the secrets
-      run: |
         cd mern-food-ordering-app-backend
         touch .env
         echo MONGODB_CONNECTION_STRING=${{secrets.MONGODB_CONNECTION_STRING}} >> .env
