@@ -88,6 +88,7 @@ jobs:
     - name: git clone
       run: |
         cd ~/food_delivery_app
+        rm -rf MERN_food_delivery_app_git_action
         git clone https://github.com/eshan998/MERN_food_delivery_app_git_action.git
         echo "now at food_delivery_app"
         ls -al
@@ -97,7 +98,7 @@ jobs:
     - name: create frontend env file with all the secrets
       run: |
         cd mern-food-ordering-app-frontend
-        rm -rf .env
+        # rm -rf .env
         touch .env
         echo VITE_API_BASE_URL=${{secrets.VITE_API_BASE_URL}} >> .env
         echo VITE_AUTH0_DOMAIN=${{secrets.VITE_AUTH0_DOMAIN}} >> .env
